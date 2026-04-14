@@ -1,6 +1,7 @@
 # Sistem Pakar Diagnosa Kerusakan Komputer
 
-Program berbasis Python (console) yang menggunakan pendekatan **sistem pakar** untuk mendiagnosa kerusakan komputer/laptop berdasarkan gejala yang diinputkan pengguna.
+Program Python berbasis console yang menggunakan konsep sistem pakar untuk membantu mendiagnosa kemungkinan kerusakan komputer atau laptop berdasarkan gejala yang dialami pengguna.
+Program akan menanyakan beberapa gejala, lalu mencocokkannya dengan data kerusakan yang sudah disimpan di dalam sistem.
 
 ---
 
@@ -24,7 +25,7 @@ database_kerusakan = {
 }
 ```
 
-Menyimpan **basis pengetahuan** sistem pakar. Setiap key adalah nama kerusakan, dan value-nya adalah `set` berisi kode-kode gejala yang **wajib semua ada** agar kerusakan tersebut terdeteksi.
+Bagian ini menyimpan data kerusakan dan gejalanya. Jika semua gejala pada sebuah kerusakan terpenuhi, maka sistem akan menganggap kerusakan tersebut terdeteksi.
 
 ---
 
@@ -37,7 +38,7 @@ solusi_kerusakan = {
 }
 ```
 
-Menyimpan **solusi** untuk setiap jenis kerusakan. Key-nya selaras dengan `database_kerusakan` sehingga solusi bisa dipanggil langsung setelah kerusakan teridentifikasi.
+Berisi solusi atau saran perbaikan untuk tiap kerusakan. Struktur datanya juga menggunakan dictionary, sehingga ketika sebuah kerusakan terdeteksi, program bisa langsung menampilkan solusi yang sesuai.
 
 ---
 
@@ -50,7 +51,7 @@ semua_gejala = [
 ]
 ```
 
-Berisi **12 pertanyaan gejala** dalam format list of tuple `(kode_gejala, teks_pertanyaan)`. Kode gejala digunakan sebagai penghubung antara jawaban pengguna dengan `database_kerusakan`.
+Berisi **12 pertanyaan gejala** yang setiap data terdiri dari `(kode_gejala, teks_pertanyaan)`. Kode gejala digunakan sebagai penghubung antara jawaban pengguna dengan `database_kerusakan`.
 
 ---
 
@@ -63,7 +64,7 @@ def tanya_gejala(kode, pertanyaan):
         gejala_pasien.append(kode)
 ```
 
-Menampilkan pertanyaan satu per satu ke pengguna. Jika pengguna menjawab `y`, kode gejala tersebut ditambahkan ke list `gejala_pasien` yang menjadi input untuk proses diagnosa.
+Menampilkan pertanyaan satu per satu ke pengguna. Jika pengguna menjawab `y`, kode gejala tersebut ditambahkan ke list `gejala_pasien`. List ini berisi semua gejala yang dialami oleh pengguna.
 
 ---
 
@@ -78,7 +79,7 @@ def diagnosa_kerusakan(gejala):
     return hasil
 ```
 
-Inti dari sistem pakar. Fungsi ini membandingkan gejala yang dilaporkan pengguna dengan setiap aturan di `database_kerusakan`. Metode `.issubset()` memastikan bahwa **semua gejala yang disyaratkan** untuk suatu kerusakan harus terpenuhi agar kerusakan itu terdeteksi. Bisa mendeteksi lebih dari satu kerusakan sekaligus.
+Inti dari program. Fungsi ini membandingkan gejala pengguna dengan setiap aturan di `database_kerusakan`. Metode `.issubset()` memastikan bahwa **semua gejala yang disyaratkan** untuk suatu kerusakan harus terpenuhi agar kerusakan itu terdeteksi. Bisa mendeteksi lebih dari satu kerusakan sekaligus.
 
 ---
 
@@ -106,7 +107,7 @@ def main():
     tampilkan_hasil(gejala_pasien)
 ```
 
-Titik masuk program. Mengiterasi seluruh daftar gejala, mengumpulkan jawaban pengguna, lalu memanggil fungsi tampil hasil.
+Fungsi pengatur jalannya program. Mengiterasi seluruh daftar gejala, mengumpulkan jawaban pengguna, lalu memanggil fungsi tampil hasil.
 
 ---
 
