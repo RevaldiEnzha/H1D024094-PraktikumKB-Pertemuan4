@@ -114,7 +114,7 @@ Fungsi pengatur jalannya program. Mengiterasi seluruh daftar gejala, mengumpulka
 ## Cara Menjalankan
 
 ```bash
-python sistem_pakar.py
+python "Tugas Sistem Pakar 1 - Diagnosa Kerusakan Laptop.py"
 ```
 
 Jawab setiap pertanyaan dengan `y` (ya) atau `t` (tidak).
